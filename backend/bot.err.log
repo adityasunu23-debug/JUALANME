@@ -1,0 +1,15 @@
+2026-11-02 11:22:20,090 | INFO | app.bot | Runtime settings synced from database
+2026-11-02 11:22:22,037 | INFO | app.bot | Starting Telegram long polling
+2026-11-02 11:22:22,054 | INFO | aiogram.dispatcher | Start polling
+2026-11-02 11:22:22,340 | INFO | aiogram.dispatcher | Run polling for bot @lacmarket_bot id=9134074552 - 'LACMARKET'
+2026-11-02 11:27:10,689 | INFO | aiogram.event | Update id=229055023 is handled. Duration 2078 ms by bot id=9134074552
+2026-11-02 11:27:13,482 | INFO | aiogram.event | Update id=229055024 is handled. Duration 1359 ms by bot id=9134074552
+2026-11-02 11:27:48,936 | INFO | aiogram.event | Update id=229055025 is handled. Duration 1483 ms by bot id=9134074552
+2026-11-02 11:27:51,238 | INFO | aiogram.event | Update id=229055026 is handled. Duration 1327 ms by bot id=9134074552
+2026-11-02 11:27:53,738 | INFO | aiogram.event | Update id=229055027 is handled. Duration 1312 ms by bot id=9134074552
+2026-11-02 11:27:55,965 | INFO | aiogram.event | Update id=229055028 is handled. Duration 1297 ms by bot id=9134074552
+2026-11-02 11:28:00,565 | INFO | aiogram.event | Update id=229055029 is handled. Duration 1328 ms by bot id=9134074552
+2026-11-02 11:28:03,695 | INFO | aiogram.event | Update id=229055030 is handled. Duration 1359 ms by bot id=9134074552
+2026-11-02 11:29:28,337 | INFO | aiogram.event | Update id=229055031 is handled. Duration 1359 ms by bot id=9134074552
+2026-11-02 11:29:30,738 | INFO | aiogram.event | Update id=229055032 is handled. Duration 1375 ms by bot id=9134074552
+2026-11-02 11:29:33,644 | INFO | aiogram.event | Update id=229055033 is handled. Duration 1359 ms by bot id=9134074552

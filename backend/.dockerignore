@@ -1,0 +1,20 @@
+# backend/.dockerignore — keeps build context small & secrets out of the image
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+data/
+backups/
+*.sqlite3
+.env
+.env.*
+!.env.example
+Dockerfile
+.dockerignore
+tests/

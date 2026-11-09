@@ -1,0 +1,32 @@
+# ---- Web framework ----
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+python-multipart==0.0.20
+pydantic==2.10.4
+pydantic-settings==2.7.0
+
+# ---- Database ----
+SQLAlchemy==2.0.36
+asyncpg==0.30.0
+aiosqlite==0.20.0
+greenlet==3.1.1
+
+# ---- Cache ----
+redis==5.2.1
+
+# ---- Auth ----
+PyJWT==2.10.1
+
+# ---- HTTP client ----
+httpx==0.28.1
+
+# ---- Telegram bot ----
+aiogram==3.17.0
+
+# ---- Payments / QR ----
+qrcode[pil]==8.0
+pillow==11.1.0
+
+# ---- Utilities ----
+python-dateutil==2.9.0.post0
+aiofiles==24.1.0

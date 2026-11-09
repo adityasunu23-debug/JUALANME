@@ -1,0 +1,16 @@
+{
+  "/(dashboard)/settings/page": "app/(dashboard)/settings/page.js",
+  "/(dashboard)/catalog/page": "app/(dashboard)/catalog/page.js",
+  "/(dashboard)/payments/page": "app/(dashboard)/payments/page.js",
+  "/(dashboard)/revenue/page": "app/(dashboard)/revenue/page.js",
+  "/(dashboard)/deliveries/page": "app/(dashboard)/deliveries/page.js",
+  "/(dashboard)/transactions/page": "app/(dashboard)/transactions/page.js",
+  "/(dashboard)/analytics/page": "app/(dashboard)/analytics/page.js",
+  "/(dashboard)/vouchers/page": "app/(dashboard)/vouchers/page.js",
+  "/(dashboard)/logs/page": "app/(dashboard)/logs/page.js",
+  "/(dashboard)/orders/page": "app/(dashboard)/orders/page.js",
+  "/(dashboard)/backups/page": "app/(dashboard)/backups/page.js",
+  "/(dashboard)/customers/page": "app/(dashboard)/customers/page.js",
+  "/(dashboard)/dashboard/page": "app/(dashboard)/dashboard/page.js",
+  "/(dashboard)/stock/page": "app/(dashboard)/stock/page.js"
+}

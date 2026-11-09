@@ -1,0 +1,43 @@
+# Root .dockerignore — applies to any build context at repo root.
+# Covers backend (Python), dashboard (Next.js), and general junk.
+
+# Python
+**/.venv/
+**/venv/
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+**/.pytest_cache/
+**/.mypy_cache/
+**/.ruff_cache/
+**/.coverage
+**/htmlcov/
+
+# Node / Next.js
+**/node_modules/
+**/.next/
+**/out/
+**/coverage/
+**/npm-debug.log*
+
+# Data, caches, secret files (never bake these into images)
+**/data/
+**/backups/
+**/*.sqlite3
+**/.env
+**/.env.*
+!**/.env.example
+
+# VCS & IDE
+.git/
+.gitignore
+.vscode/
+.idea/
+.DS_Store
+
+# Docs
+README.md
+
+# Docker files themselves (not needed inside the context they describe)
+**/Dockerfile
+**/.dockerignore

@@ -1,0 +1,45 @@
+
+> telegram-store-dashboard@1.0.0 dev
+> next dev
+
+  ▲ Next.js 14.2.35
+  - Local:        http://localhost:3000
+
+ ✓ Starting...
+ ✓ Ready in 7.3s
+ ○ Compiling / ...
+ ✓ Compiled / in 7.8s (501 modules)
+ GET / 200 in 8268ms
+ ○ Compiling /login ...
+ ✓ Compiled /login in 7.2s (517 modules)
+ ○ Compiling /dashboard ...
+ ✓ Compiled /dashboard in 1218ms (606 modules)
+ ✓ Compiled /catalog in 489ms (620 modules)
+ ○ Compiling /payments ...
+ ✓ Compiled /payments in 547ms (630 modules)
+ ✓ Compiled /transactions in 304ms (636 modules)
+ ✓ Compiled /vouchers in 446ms (646 modules)
+ ✓ Compiled /settings in 368ms (658 modules)
+ ○ Compiling /orders ...
+ ✓ Compiled /orders in 730ms (659 modules)
+ ✓ Compiled /deliveries in 474ms (669 modules)
+ ○ Compiling /revenue ...
+ ✓ Compiled /revenue in 573ms (685 modules)
+ GET /revenue 200 in 283ms
+ ○ Compiling /login ...
+ ✓ Compiled /login in 534ms (332 modules)
+ GET /login 200 in 727ms
+ GET /revenue 200 in 70ms
+ ✓ Compiled /transactions in 260ms (329 modules)
+ ✓ Compiled /deliveries in 227ms (335 modules)
+ ✓ Compiled /orders in 167ms (340 modules)
+ ○ Compiling /analytics ...
+ ✓ Compiled /analytics in 627ms (684 modules)
+ ✓ Compiled /dashboard in 199ms (351 modules)
+ ○ Compiling /backups ...
+ ✓ Compiled /backups in 536ms (701 modules)
+ ✓ Compiled /logs in 506ms (707 modules)
+ ○ Compiling /customers ...
+ ✓ Compiled /customers in 771ms (717 modules)
+ ○ Compiling /stock ...
+ ✓ Compiled /stock in 547ms (725 modules)

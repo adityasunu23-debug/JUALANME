@@ -1,0 +1,134 @@
+# Telegram Bot
+
+Bot penjualan produk digital dengan pembayaran USDT BEP20 dan pengiriman otomatis.
+Dibangun dengan **aiogram 3**, berbagi database dan service layer dengan API/dashboard.
+
+## Lokasi kode
+
+```
+backend/app/bot/
+├── run.py              # entrypoint: python -m app.bot.run
+├── dispatcher.py       # factory Bot + Dispatcher, registrasi middleware & router
+├── webhook.py          # mode webhook (dipakai bila BOT_WEBHOOK_URL diisi)
+├── keyboards.py        # inline & reply keyboard
+├── common.py           # render teks pesan (produk, invoice, order)
+├── utils.py            # escape, format harga, QR PNG, label status
+├── locales/
+│   ├── id.py           # 88 kunci teks Bahasa Indonesia
+│   └── en.py           # 88 kunci teks Bahasa Inggris
+├── middlewares/
+│   ├── session.py      # DbSessionMiddleware (satu sesi DB per update)
+│   └── user.py         # UserContextMiddleware + ThrottleMiddleware
+└── handlers/
+    ├── start.py        # /start, menu utama, pilih bahasa
+    ├── catalog.py      # kategori, katalog, detail produk, pilih jumlah
+    ├── payments.py     # checkout, invoice + QR, verifikasi pembayaran
+    ├── orders.py       # riwayat pesanan & status transaksi
+    └── support.py      # bantuan & tiket customer support
+```
+
+## Menjalankan bot
+
+### 1. Dapatkan token
+
+Buka [@BotFather](https://t.me/BotFather) di Telegram:
+
+```
+/newbot
+```
+
+Ikuti instruksi, salin token yang diberikan (format `123456789:AA...`).
+
+### 2. Isi `backend/.env`
+
+```env
+BOT_TOKEN=123456789:AA-token-anda
+BOT_USERNAME=nama_bot_anda
+SUPPORT_USERNAME=@username_support
+ADMIN_TELEGRAM_IDS=123456789      # Telegram ID owner
+```
+
+### 3. Jalankan
+
+**Windows (PowerShell):**
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts\start-bot.ps1
+```
+
+**Linux / VPS:**
+
+```bash
+chmod +x scripts/start-bot.sh
+./scripts/start-bot.sh
+```
+
+**Manual (dari folder `backend`):**
+
+```bash
+.\.venv\Scripts\python.exe -m app.bot.run     # Windows
+.venv/bin/python -m app.bot.run               # Linux
+```
+
+Tanpa `BOT_TOKEN`, bot akan berhenti dengan instruksi singkat, bukan error stack.
+
+### Mode webhook (produksi)
+
+Isi `BOT_WEBHOOK_URL` + `BOT_WEBHOOK_SECRET` untuk menyerahkan update ke API
+(`/api/v1/bot/webhook/{secret}`). Mode ini cocok di belakang Nginx karena tidak
+membutuhkan proses long-polling terpisah.
+
+## Alur pembelian
+
+```
+/start
+  └─ Menu utama
+       ├─ Katalog  →  kategori  →  produk  →  pilih jumlah
+       │                                        └─ Checkout
+       │                                             ├─ buat order + invoice
+       │                                             ├─ kirim QR + alamat wallet + batas waktu
+       │                                             └─ verifikasi via API/webhook
+       │                                                  └─ pembayaran sukses
+       │                                                       ├─ AUTO  → stok dikunci, produk dikirim
+       │                                                       └─ MANUAL → masuk antrean dashboard
+       ├─ Pesanan saya  →  riwayat + status
+       ├─ Bantuan       →  support / buka tiket
+       └─ Bahasa        →  Indonesia / English
+```
+
+## Perintah bot
+
+| Perintah | Fungsi |
+| --- | --- |
+| `/start` | Menu utama |
+| `/menu` | Katalog produk |
+| `/orders` | Riwayat pesanan |
+| `/support` | Bantuan & customer support |
+| `/language` | Ganti bahasa (ID/EN) |
+| `/help` | Panduan singkat |
+
+## Keamanan pembayaran
+
+- Invoice dibuat lewat API gateway dengan nominal, jaringan (`bep20`), dan batas waktu.
+- Webhook diverifikasi signature-nya sebelum diproses (`security.webhook_require_signature`).
+- Setiap payload webhook disimpan dengan hash unik → **replay ditolak** (`duplicate`).
+- Transisi order ke `PAID` memakai conditional `UPDATE` → pembayaran tidak diproses dua kali.
+- Stok dikunci dengan conditional `UPDATE ... WHERE is_used = false` → satu item tidak mungkin terkirim dua kali.
+- Nominal, mata uang, dan jaringan divalidasi; kurang bayar / lebih bayar / gagal ditangani terpisah.
+
+## Pengiriman produk
+
+| Mode | Perilaku |
+| --- | --- |
+| `AUTO` | Bot mengambil stok, mengirim konten ke chat, order menjadi `COMPLETED`. Gagal → status `FAILED` + notifikasi admin, bisa di-retry dari dashboard. |
+| `MANUAL` | Order masuk antrean **Delivery Management**, admin mengirim konten dari dashboard, bot meneruskan ke pembeli. |
+
+## Troubleshooting
+
+| Gejala | Penyebab & solusi |
+| --- | --- |
+| `BOT_TOKEN is not configured` | Token belum diisi di `backend/.env`. |
+| Bot diam saja | Token salah, atau bot dihapus. Cek dengan `/start` di chat bot. |
+| `TelegramUnauthorizedError` | Token tidak valid — buat ulang lewat @BotFather. |
+| Pembayaran tidak terdeteksi | `WEBHOOK_BASE_URL` harus dapat diakses publik oleh gateway. Untuk lokal gunakan `PAYMENT_PROVIDER=mock`. |
+| Invoice gagal dibuat | Kredensial merchant belum diisi di **Settings → API configuration**. |
